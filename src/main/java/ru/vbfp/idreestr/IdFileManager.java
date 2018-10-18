@@ -413,7 +413,7 @@ public class IdFileManager {
         System.out.println("Storage contained in JPG directory " + workPath.toString());
         System.out.println("files: ");
         int count = 0;
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(workPath,"*.{jpg}")) {
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(workPath,"*.{png}")) {
         for (Path entry : stream) {
             System.out.println(entry.toString());
             count++;

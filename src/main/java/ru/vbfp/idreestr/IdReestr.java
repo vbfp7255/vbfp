@@ -63,9 +63,9 @@ import org.apache.poi.ss.usermodel.IndexedColors;
  */
 public class IdReestr {
     
-    private static final String PDF_IMAGES = "D:/id-kms-exec/forPdfToJpeg/pdfimages.exe";
+    private static final String PDF_IMAGES = "D:/forconvert/pdftopng.exe";
     private static final String PARAM_SPLITTER = " ";
-    private static final String PDF_IMAGES_OPTION = "-j";
+    private static final String PDF_IMAGES_OPTION = "-r 300";
     private static final String TESSERACT_FILE = "\"C:/Program Files (x86)/Tesseract-OCR/tesseract.exe\"";
     private static final String TESSERACT_FILE_OPTION = "-l rus";
     
@@ -93,7 +93,7 @@ public class IdReestr {
         
 /**
  * Comment for dev path for create xls-report from txt
-         
+  */       
         createdIdReestrIteration.idFM.fetchPdfFromSrcDir();
         int compareTo = 13;
         do{
@@ -105,7 +105,7 @@ public class IdReestr {
             imgToXls(createdIdReestrIteration);
         }while( compareTo != 0 );
         System.out.println("****->>>>Finished");
-*/
+
 
         xlsReporter(createdIdReestrIteration);
     }
@@ -140,7 +140,7 @@ public class IdReestr {
             if( !listFilesInWorkJpegDir.isEmpty() ){
                 for (Path pathJpegName : listFilesInWorkJpegDir) {
                     String strFileName = pathJpegName.getFileName().toString();
-                    String strFileNameNotExt = strFileName.replaceAll(".jpg", "");
+                    String strFileNameNotExt = strFileName.replaceAll(".png", "");
                     Path dstPath = Paths.get(idReestrIteration.idFM.getDirForTxtTesseract().toString(), 
                             strFileNameNotExt);
                     String cmdToRun = TESSERACT_FILE
