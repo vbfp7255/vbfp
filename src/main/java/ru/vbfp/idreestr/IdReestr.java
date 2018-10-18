@@ -76,21 +76,21 @@ public class IdReestr {
     }
     
 /**
- * @TODO make xls from txt:
+ * @todo make xls from txt:
  * read file list from subDirs
  * read lines from file, create dictonaries
  * 
- * @TODO release cobnvert by xpdftools from *.pdf to *.png, use D:\forconvert\pdftopng.exe
+ * @todo release cobnvert by xpdftools from *.pdf to *.png, use D:\forconvert\pdftopng.exe
  * (pdfimages return *.pbm for some pages, png return all in png)
- * @TODO in last iteration double names and files creation (*.xls) fix it
- * @TODO additional checkfor file names, parameters (crc hash?) GET OUT double operations... :)
- * @TODO logging operations to *.st files, and read it in algoritm
+ * @todo in last iteration double names and files creation (*.xls) fix it
+ * @todo additional checkfor file names, parameters (crc hash?) GET OUT double operations... :)
+ * @todo logging operations to *.st files, and read it in algoritm
  * 
  * @param args 
  */   
     public static void main(String[] args){
         IdReestr createdIdReestrIteration = new IdReestr();
-
+        
 /**
  * Comment for dev path for create xls-report from txt
          
@@ -106,8 +106,24 @@ public class IdReestr {
         }while( compareTo != 0 );
         System.out.println("****->>>>Finished");
 */
+
+        xlsReporter(createdIdReestrIteration);
     }
-    
+    private static void xlsReporter(IdReestr idReestrIteration){
+        ArrayList<Path> filesInWorkTxtTesseractDir = idReestrIteration.idFM.listFilesInSubDirTxtTesseractInAllStorages();
+        
+        if( !filesInWorkTxtTesseractDir.isEmpty() ){
+                System.out.println("From created list");
+                for (Path pathJpegName : filesInWorkTxtTesseractDir) {
+                    String strFileName = pathJpegName.toString();
+                    System.out.println(strFileName);
+                   
+                }
+            
+        }
+        IdReporter repToXls = new IdReporter(filesInWorkTxtTesseractDir);
+        
+    }
     //
     private static void imgToXls(IdReestr idReestrIteration){
         ArrayList<Path> listFilesInWorkPdfRenamedDir = idReestrIteration.idFM.listFilesInWorkPdfRenamedDir();

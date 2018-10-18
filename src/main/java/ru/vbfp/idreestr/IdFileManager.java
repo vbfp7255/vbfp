@@ -424,6 +424,45 @@ public class IdFileManager {
         }
         return listToReturn;
     }
+    
+    protected ArrayList<Path> listFilesInSubDirTxtTesseractInAllStorages() {
+        ArrayList<Path> listToReturn = new ArrayList<>();
+        Path workPath = Paths.get(WORK_DIR);
+        Path choicedStorage;
+        long countInDir = 0L;
+        try (DirectoryStream<Path> streamStorages = Files.newDirectoryStream(workPath)) {
+        for (Path entryStorages : streamStorages) {
+            choicedStorage = entryStorages;
+            Path storagePath = Paths.get(entryStorages.toString(),TXT_TESS_DIR);
+            int countFilesTxt = 0;
+            try (DirectoryStream<Path> streamFiles = Files.newDirectoryStream(storagePath,"*.{txt}")) {
+            for (Path entryFiles : streamFiles) {
+                //System.out.println(entryFiles.toString());
+                countFilesTxt++;
+                listToReturn.add(entryFiles);
+            }
+            if( countFilesTxt == 0 ){
+                System.out.println("listFilesInSubDirTxtTesseractInAllStorages() Directory is Empty, put some txt files into " + storagePath.toString());
+            }
+            } catch (IOException | DirectoryIteratorException e) {
+                e.printStackTrace();
+                System.out.println("[ERROR] Can`t read count files in work directory");
+            }
+            
+            countInDir++;
+        }
+        } catch (IOException | DirectoryIteratorException e) {
+            e.printStackTrace();
+            System.out.println("[ERROR] Can`t read count files in work directory");
+        }
+        
+        //Path workPath = getDirForTxtTesseract();
+        //System.out.println("Storage contained in TXT_TESS directory " + workPath.toString());
+        //System.out.println("files: ");
+        
+        return listToReturn;
+    }
+    
     protected ArrayList<Path> listFilesInWorkTxtTesseractDir() {
         ArrayList<Path> listToReturn = new ArrayList<>();
         Path workPath = getDirForTxtTesseract();
