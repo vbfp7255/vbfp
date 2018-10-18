@@ -19,12 +19,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,6 +55,14 @@ public class IdReporter {
         for (Path elementFile : this.filesForReport) {
             String strFileName = elementFile.toString();
             System.out.println(strFileName);
+            
+            List<String> lines = new ArrayList<>();
+            try {
+                lines.addAll(Files.readAllLines(elementFile, Charset.forName("UTF-8")));
+            } catch (IOException ex) {
+                ex.getMessage();
+                ex.printStackTrace();
+            }
         }
     }
     
@@ -71,6 +81,9 @@ public class IdReporter {
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet sheet = wb.createSheet(sheetName) ;
 
+        
+        
+        
         for (int r=0;r < 5; r++ )
         {
             XSSFRow row = sheet.createRow(r);
@@ -78,6 +91,9 @@ public class IdReporter {
             for (int c=0;c < 5; c++ )
             {
                 XSSFCell cell = row.createCell(c);
+                
+                
+                
                 cell.setCellValue("Cell "+r+" "+c);
             }
         }
