@@ -47,6 +47,7 @@ public class IdFileManager {
     
     private static final String WORK_DIR = "D:/id-ocr";
     private static final String SRC_DIR = "D:/id-src-pdf";
+    private static final String XLSX_REPORT_NAME = "id-reestr.xlsx";
     
     private static final String PDF_DIR = "pdf";
     private static final String PDF_RENAMED_DIR = "pdf-renamed";
@@ -73,7 +74,12 @@ public class IdFileManager {
     public IdFileManager() {
         this.idinsystem = new ConcurrentSkipListMap<>();
     }
-    
+    protected static String getWorkDirStr(){
+        return WORK_DIR;
+    }
+    protected static String getReportName(){
+        return getNewProcessId() + XLSX_REPORT_NAME;
+    }
     private void addPath(Path innerPath){
         pathIsNotReadWriteLink(innerPath);
         this.idinsystem.put(innerPath.hashCode(), innerPath);

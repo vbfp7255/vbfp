@@ -263,7 +263,7 @@ public class IdReestr {
                 Cell cell = cellIterator.next();
  
                 // Change to getCellType() if using POI 4.x
-                CellType cellType = cell.getCellType();
+                CellType cellType = cell.getCellTypeEnum();
  
                 switch (cellType) {
                 case _NONE:
