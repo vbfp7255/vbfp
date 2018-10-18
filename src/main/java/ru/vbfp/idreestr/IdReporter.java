@@ -46,60 +46,231 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author vbfp
  */
 public class IdReporter {
+    private Integer rowCount;
+    private Integer colCount;
+    private Path excelFile;
+    private static final int FILE_ROW_LIMIT = 100000;
+    private String sheetName = "Reestr";
+    private XSSFWorkbook wb;
+    private XSSFSheet sheet;
+    
+    
     private ArrayList<Path> filesForReport;
     public IdReporter(ArrayList<Path> filesInWorkTxtTesseractDir) {
         filesForReport = filesInWorkTxtTesseractDir;
+        rowCount = 0;
+        colCount = 0;
+        excelFile = getNewReportName();
+        wb = new XSSFWorkbook();
+        sheet = wb.createSheet(sheetName);
     }
     
     protected void processFileFromList(){
         for (Path elementFile : this.filesForReport) {
             String strFileName = elementFile.toString();
-            System.out.println(strFileName);
             
             List<String> lines = new ArrayList<>();
+            lines.add("filename" + strFileName);
             try {
                 lines.addAll(Files.readAllLines(elementFile, Charset.forName("UTF-8")));
             } catch (IOException ex) {
                 ex.getMessage();
                 ex.printStackTrace();
             }
+            lines.add("filename" + strFileName);
+            List<String> linesFiltered = new ArrayList<>();
+            
+            linesFiltered.addAll(rowFilter(lines));
+            reportWriterXlsx(linesFiltered);
+            System.out.println(strFileName + " row count " + linesFiltered.size());
+            
+        }
+        saveXlsFile();
+    }
+    private List<String> rowFilter(List<String> linesOuter){
+        List<String> strFiltered = new ArrayList<>();
+        for (String strForAdd : linesOuter) {
+            String stringForFilter = new String(strForAdd.toLowerCase().getBytes());
+            if( !stringForFilter.isEmpty() ){
+                if( !stringForFilter.contains("акт") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("№") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("дата") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("работ") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("освидетельствования") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("проекту") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("паспорт") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("сертификат") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("схема") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("труба") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("результат") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("свая") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("балка") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("траверса") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("отвод") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("переход") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("тройник") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("смесь") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("январ") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("феврал") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("март") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("апрел") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("май") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("июн") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("июл") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("август") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("сентябр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("октябр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("ноябр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("декабр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                
+                if( !stringForFilter.contains("протокол") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( !stringForFilter.contains("filename") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+            
+            }
+        }
+        return strFiltered;
+    }
+    private Path getNewReportName(){
+        return Paths.get(IdFileManager.getReportDirStr(),IdFileManager.getReportName());
+    }
+    protected void reportWriterXlsx(List<String> linesOuter){
+        for (String stringToXlsxCell : linesOuter) {
+            
+            rowCount++;
+            XSSFRow row = sheet.createRow(rowCount);
+            XSSFCell cell = row.createCell(3);
+            cell.setCellValue(stringToXlsxCell);
+            
+            if( (rowCount > FILE_ROW_LIMIT) || (rowCount == 0) ){
+                if ( rowCount != 0){
+                    saveXlsFile();
+                    try {
+                        wb.close();
+                    } catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                        ex.printStackTrace();
+                    }
+                    sheet = null;
+                    wb = new XSSFWorkbook();
+                    sheet = wb.createSheet(sheetName);
+                }
+                rowCount = 1;
+                excelFile = getNewReportName();
+                try {
+                    if( !Files.exists(excelFile, LinkOption.NOFOLLOW_LINKS ) ){
+                        Files.createFile(excelFile);
+                    }
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                    ex.printStackTrace();
+                }
+
+                sheetName = "Reestr";
+                wb = new XSSFWorkbook();
+                sheet = wb.createSheet(sheetName) ;
+                
+                
+            }
         }
     }
     
-    protected void reportWriterXlsx(){
-        Path excelFile = Paths.get(IdFileManager.getWorkDirStr(),IdFileManager.getReportName());
-        try {
-            if( !Files.exists(excelFile, LinkOption.NOFOLLOW_LINKS ) ){
-                Files.createFile(excelFile);
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }
-        
-        String sheetName = "Reestr";
-        XSSFWorkbook wb = new XSSFWorkbook();
-        XSSFSheet sheet = wb.createSheet(sheetName) ;
-
-        
-        
-        
-        for (int r=0;r < 5; r++ )
-        {
-            XSSFRow row = sheet.createRow(r);
-            //iterating c number of columns
-            for (int c=0;c < 5; c++ )
-            {
-                XSSFCell cell = row.createCell(c);
-                
-                
-                
-                cell.setCellValue("Cell "+r+" "+c);
-            }
-        }
-
-        Iterator<Row> itr = sheet.iterator();
-        
+    private void saveXlsFile(){
         try (FileOutputStream fOutStream = new FileOutputStream(excelFile.toFile())){
             wb.write(fOutStream);
         } catch (FileNotFoundException ex) {
@@ -109,8 +280,6 @@ public class IdReporter {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
-        
-
     }
     
 }

@@ -46,6 +46,7 @@ import static ru.vbfp.idreestr.IdReestr.getNewProcessId;
 public class IdFileManager {
     
     private static final String WORK_DIR = "D:/id-ocr";
+    private static final String REPORT_DIR = "D:/id-report";
     private static final String SRC_DIR = "D:/id-src-pdf";
     private static final String XLSX_REPORT_NAME = "id-reestr.xlsx";
     
@@ -73,6 +74,9 @@ public class IdFileManager {
 
     public IdFileManager() {
         this.idinsystem = new ConcurrentSkipListMap<>();
+    }
+    protected static String getReportDirStr(){
+        return REPORT_DIR;
     }
     protected static String getWorkDirStr(){
         return WORK_DIR;
