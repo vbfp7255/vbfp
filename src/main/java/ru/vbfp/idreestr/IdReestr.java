@@ -75,17 +75,25 @@ public class IdReestr {
         this.idFM = new IdFileManager();
     }
     
-    
+/**
+ * @TODO make xls from txt:
+ * read file list from subDirs
+ * read lines from file, create dictonaries
+ * 
+ * @TODO release cobnvert by xpdftools from *.pdf to *.png, use D:\forconvert\pdftopng.exe
+ * (pdfimages return *.pbm for some pages, png return all in png)
+ * @TODO in last iteration double names and files creation (*.xls) fix it
+ * @TODO additional checkfor file names, parameters (crc hash?) GET OUT double operations... :)
+ * @TODO logging operations to *.st files, and read it in algoritm
+ * 
+ * @param args 
+ */   
     public static void main(String[] args){
         IdReestr createdIdReestrIteration = new IdReestr();
-        /*idReestrIteration.idFM.makeNewStorage();
-        Path workStorage = idReestrIteration.idFM.getCurrentStorage();
-        if( workStorage == null ){
-            throw new RuntimeException("[ERROR] Can`t init work storage, getCurrentStorage() result is null");
-        }
-        System.out.println("New storage created " + workStorage.toString());
-        //idReestrIteration.idFM.listFilesInWorkPdfDir();*/
-        
+
+/**
+ * Comment for dev path for create xls-report from txt
+         
         createdIdReestrIteration.idFM.fetchPdfFromSrcDir();
         int compareTo = 13;
         do{
@@ -97,6 +105,7 @@ public class IdReestr {
             imgToXls(createdIdReestrIteration);
         }while( compareTo != 0 );
         System.out.println("****->>>>Finished");
+*/
     }
     
     //
