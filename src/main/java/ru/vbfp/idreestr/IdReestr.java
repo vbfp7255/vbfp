@@ -98,6 +98,8 @@ public class IdReestr {
         }while( compareTo != 0 );
         System.out.println("****->>>>Finished");
     }
+    
+    //
     private static void imgToXls(IdReestr idReestrIteration){
         ArrayList<Path> listFilesInWorkPdfRenamedDir = idReestrIteration.idFM.listFilesInWorkPdfRenamedDir();
         ArrayList<Path> chekDirJpg = idReestrIteration.idFM.listFilesInWorkJpegDir();
