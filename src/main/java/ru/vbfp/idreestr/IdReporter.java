@@ -28,4 +28,11 @@ public class IdReporter {
         filesForReport = filesInWorkTxtTesseractDir;
     }
     
+    protected void processFileFromList(){
+        for (Path elementFile : this.filesForReport) {
+            String strFileName = elementFile.toString();
+            System.out.println(strFileName);
+        }
+    }
+    
 }

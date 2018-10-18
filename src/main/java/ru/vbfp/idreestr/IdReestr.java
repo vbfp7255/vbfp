@@ -111,18 +111,9 @@ public class IdReestr {
     }
     private static void xlsReporter(IdReestr idReestrIteration){
         ArrayList<Path> filesInWorkTxtTesseractDir = idReestrIteration.idFM.listFilesInSubDirTxtTesseractInAllStorages();
-        
-        if( !filesInWorkTxtTesseractDir.isEmpty() ){
-                System.out.println("From created list");
-                for (Path pathJpegName : filesInWorkTxtTesseractDir) {
-                    String strFileName = pathJpegName.toString();
-                    System.out.println(strFileName);
-                   
-                }
-            
-        }
+
         IdReporter repToXls = new IdReporter(filesInWorkTxtTesseractDir);
-        
+        repToXls.processFileFromList();
     }
     //
     private static void imgToXls(IdReestr idReestrIteration){
