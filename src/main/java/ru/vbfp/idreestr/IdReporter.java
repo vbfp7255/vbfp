@@ -212,6 +212,10 @@ public class IdReporter {
                     strFiltered.add(strForAdd);
                     continue;
                 }
+                if( !stringForFilter.contains("номер") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
                 
                 if( !stringForFilter.contains("протокол") ){
                     strFiltered.add(strForAdd);
