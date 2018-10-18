@@ -27,16 +27,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-import java.nio.file.attribute.FileAttribute;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.PosixFilePermission;
-import java.nio.file.attribute.PosixFilePermissions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static ru.vbfp.idreestr.IdReestr.getNewProcessId;
 
 /**

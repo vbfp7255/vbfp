@@ -92,136 +92,160 @@ public class IdReporter {
         for (String strForAdd : linesOuter) {
             String stringForFilter = new String(strForAdd.toLowerCase().getBytes());
             if( !stringForFilter.isEmpty() ){
-                if( !stringForFilter.contains("акт") ){
+                if( stringForFilter.contains("акт") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("№") ){
+                if( stringForFilter.contains("№") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("дата") ){
+                if( stringForFilter.contains("дата") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("работ") ){
+                if( stringForFilter.contains("работ") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("освидетельствования") ){
+                if( stringForFilter.contains("освидетельствования") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("проекту") ){
+                if( stringForFilter.contains("монтаж") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("паспорт") ){
+                if( stringForFilter.contains("погружение") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("сертификат") ){
+                if( stringForFilter.contains("забивка") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("схема") ){
+                if( stringForFilter.contains("нанесение") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("труба") ){
+                if( stringForFilter.contains("грунтовка") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("результат") ){
+                if( stringForFilter.contains("скрытых") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("свая") ){
+                if( stringForFilter.contains("проекту") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("балка") ){
+                if( stringForFilter.contains("паспорт") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("траверса") ){
+                if( stringForFilter.contains("сертификат") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("отвод") ){
+                if( stringForFilter.contains("схема") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("переход") ){
+                if( stringForFilter.contains("труба") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("тройник") ){
+                if( stringForFilter.contains("результат") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("смесь") ){
+                if( stringForFilter.contains("свая") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("январ") ){
+                if( stringForFilter.contains("балка") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("феврал") ){
+                if( stringForFilter.contains("траверса") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("март") ){
+                if( stringForFilter.contains("отвод") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("апрел") ){
+                if( stringForFilter.contains("переход") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("май") ){
+                if( stringForFilter.contains("тройник") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("июн") ){
+                if( stringForFilter.contains("смесь") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("июл") ){
+                if( stringForFilter.contains("январ") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("август") ){
+                if( stringForFilter.contains("феврал") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("сентябр") ){
+                if( stringForFilter.contains("март") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("октябр") ){
+                if( stringForFilter.contains("апрел") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("ноябр") ){
+                if( stringForFilter.contains("май") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("декабр") ){
+                if( stringForFilter.contains("июн") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("номер") ){
+                if( stringForFilter.contains("июл") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( stringForFilter.contains("август") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( stringForFilter.contains("сентябр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( stringForFilter.contains("октябр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( stringForFilter.contains("ноябр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( stringForFilter.contains("декабр") ){
+                    strFiltered.add(strForAdd);
+                    continue;
+                }
+                if( stringForFilter.contains("номер") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
                 
-                if( !stringForFilter.contains("протокол") ){
+                if( stringForFilter.contains("протокол") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
-                if( !stringForFilter.contains("filename") ){
+                if( stringForFilter.contains("filename") ){
                     strFiltered.add(strForAdd);
                     continue;
                 }
